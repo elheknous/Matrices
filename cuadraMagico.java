@@ -1,14 +1,40 @@
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class cuadraMagico {
     public static void main(String[] args) {
-        int[][] matriz = {{2,9,4}, {7,5,3}, {6,1,8}};
+        int[][] matrizMagica = {{2,9,4}, {7,5,3}, {6,1,8}};
+        int[][] matriz = generarMatriz();
+
+        imprimirMatriz(matrizMagica);
+        verCuadradoMagico(matrizMagica);
+
         imprimirMatriz(matriz);
         verCuadradoMagico(matriz);
+    }
 
+    private static int[][] generarMatriz() {
+        int[][] matriz = new int[3][3];
 
+        ArrayList<Integer> numeros = new ArrayList<>();
+        for (int i = 1; i < 10; i++) {
+            numeros.add(i);
+        }
+        Collections.shuffle(numeros);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                matriz[i][j] = validaNumero(matriz,numeros);
+
+            }
+
+        }
+        return matriz;
+    }
+
+    private static int validaNumero(int[][] matriz, ArrayList<Integer> numeros) {
+        numeros.add(numeros.get(0));
+        numeros.remove(0);
+        return numeros.get(0);
     }
 
     private static void verCuadradoMagico(int[][] matriz) {
@@ -48,7 +74,6 @@ public class cuadraMagico {
             }
 
         }
-        System.out.println(suma);
         if (suma == 15){
             return true;
         }else {
@@ -62,8 +87,6 @@ public class cuadraMagico {
             suma = suma + matriz[n][i];
 
         }
-        System.out.println(suma);
-
         if (suma == 15){
             return true;
         }else {
@@ -77,8 +100,6 @@ public class cuadraMagico {
             suma = suma + matriz[i][n];
 
         }
-        System.out.println(suma);
-
         if (suma == 15){
             return true;
         }else {
@@ -96,18 +117,5 @@ public class cuadraMagico {
         }
     }
 
-    //  private static int[][] generarMatriz() {
-    //    ArrayList<Integer> numeros = new ArrayList<>();
-    //  for (int i = 1; i < 10; i++) {
-    //    numeros.add(i);
 
-    //7}
-    //Collections.shuffle(numeros);
-    //int[][] m = new int[3][3];
-    //for (int i = 0; i < 3; i++) {
-    //77  for (int j = 0; j < 3; j++) {
-    // m[i][j] =
-    //}
-    //}
-    //}
 }
